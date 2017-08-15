@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+
+  php5.6-apache.dev:
+    image: yousan/php5.6-apache
+    ports:
+      - 80:80
+    volumes:
+      # Add symlink directories if you use symlinks at documents.
+      - ~/git:/Users/yousan/git
+      - ~/public_html:/var/www/vhosts
+    environment:
+      PMA_HOST: mysql.dev
+      PMA_USER: root
+      PMA_PASSWORD: example
+
+  mysql.dev:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - 3306:3306
+    volumes:
+      - /private/var/lib/mysql:/var/lib/mysql
+
+  dnsmasq.dev:
+    image: yousan/dnsmasq
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    cap_add:
+      - NET_ADMIN
+
+  selenium.dev:
+    image: selenium/standalone-chrome-debug:latest
+    ports:
+      - 4444:4444/tcp
+      - 4445:5900/tcp
+    external_links:
+      - php5.6-apache.dev:zaip.dev

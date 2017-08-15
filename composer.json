@@ -1,0 +1,49 @@
+{
+  "require": {
+    "php": ">=5.4",
+    "johnpbloch/wordpress": "4.7.5"
+  },
+  "extra": {
+    "wordpress-install-dir": "public/wp"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^2.9.1",
+    "behat/behat": "^3.3",
+    "behat/mink": "^1.7",
+    "behat/mink-selenium2-driver": "^1.3",
+    "behat/mink-extension": "^2.2",
+    "behatch/contexts": "^2.7"
+  },
+  "scripts": {
+    "test": [
+      "composer test-behat"
+    ],
+    "test-behat": [
+      "./vendor/bin/behat --config ./tests/behat.yml"
+    ],
+    "set-wp-content": [
+      "rm -rf public/wp/wp-content/themes",
+      "ln -s ../../../themes public/wp/wp-content/",
+      "rm -rf public/wp/wp-content/plugins",
+      "ln -s ../../../plugins public/wp/wp-content/",
+      "cp etc/wp-config.php public/wp/",
+      "cp -R etc/languages public/wp/wp-content/"
+    ],
+    "db-export": [
+      "wp db export - | gzip > etc/dump_`whoami`.sql.gz",
+      "wp db export - | gzip > etc/dump.sql.gz"
+    ],
+    "db-import": [
+      "wp db export - | gzip > etc/dump_`whoami`.sql.gz",
+      "gunzip -c -f etc/dump.sql.gz > etc/dump.sql",
+      "wp db import etc/dump.sql",
+      "rm  etc/dump.sql"
+    ],
+    "post-install-cmd": [
+      "composer set-wp-content"
+    ],
+    "post-update-cmd": [
+      "composer set-wp-content"
+    ]
+  }
+}
