@@ -1,0 +1,26 @@
+/*
+wp-includes/
+wp-admin/
+# !wp-content/
+!.gitignore
+
+### https://raw.github.com/github/gitignore/5d896f6791c4257b74696714c66b2530b8d95a51/WordPress.gitignore
+
+*.log
+wp-config.php
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+wp-conetnt/languages/
+wp-content/wp-cache-config.php
+wp-content/plugins/hello.php
+
+/.htaccess
+/license.txt
+/readme.html
+/sitemap.xml
+/sitemap.xml.gz

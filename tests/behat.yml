@@ -1,0 +1,28 @@
+default:
+  autoload:
+    - %paths.base%/features/bootstrap
+  suites:
+    default:
+      path: %paths.base%/features
+      contexts:
+        - FeatureContext:
+            screenshotDir: %paths.base%/screenshot
+        - Behat\MinkExtension\Context\MinkContext
+        - behatch:context:browser
+        - behatch:context:debug:
+            screenshotDir: %paths.base%/screenshot
+        - behatch:context:system
+        - behatch:context:json
+        - behatch:context:table
+        - behatch:context:rest
+        - behatch:context:xml
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://behat-example.dev/wp
+      browser_name: chrome
+      sessions:
+        default:
+          selenium2: ~
+        hoge:
+          selenium2: ~
+    Behatch\Extension: ~
