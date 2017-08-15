@@ -27,6 +27,7 @@
       "rm -rf public/wp/wp-content/plugins",
       "ln -s ../../../plugins public/wp/wp-content/",
       "cp etc/wp-config.php public/wp/",
+      "cp etc/wp.gitignore public/wp/.gitignore",
       "cp -R etc/languages public/wp/wp-content/"
     ],
     "db-export": [
