@@ -38,4 +38,4 @@ services:
       - 4444:4444/tcp
       - 4445:5900/tcp
     external_links:
-      - php5.6-apache.dev:zaip.dev
+      - php5.6-apache.dev:behat-example.dev
